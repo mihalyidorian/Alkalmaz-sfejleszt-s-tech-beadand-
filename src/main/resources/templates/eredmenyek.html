@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #77908e;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #77908e;
+            color: #fff;
+        }
+
+        tbody td:first-child {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Verseny: <span th:text="${versenyNev}"></span></h1>
+
+<table>
+    <thead>
+    <th>Név</th>
+    <th>Idő</th>
+    </thead>
+
+    <tbody th:each="eredmeny: ${eredmenyek}">
+    <td th:text="${eredmeny.versenyzo.getNev()}"></td>
+    <td th:text="${eredmeny.getIdo()}"></td>
+    </tbody>
+</table>
+</body>
+</html>

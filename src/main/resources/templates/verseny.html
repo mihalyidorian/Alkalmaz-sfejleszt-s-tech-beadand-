@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versenyek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #77908e;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #77908e;
+            color: #fff;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        button[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: #77908e;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #77908e;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Versenyek</h1>
+</header>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Név</th>
+            <th>Távolság (km)</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="verseny: ${versenyek}">
+            <td th:text="${verseny.versenyId}"></td>
+            <td th:text="${verseny.nev}"></td>
+            <td th:text="${verseny.tavolsag}"></td>
+            <td><a th:href="@{/verseny/{id}(id=${verseny.versenyId})}">Megtekint</a></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Verseny neve itt</td>
+            <td>10</td>
+            <td><a href="/verseny/1">Megtekint</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Új verseny felvétele</h2>
+    <form action="/addVerseny" method="post">
+        <div>
+            <label for="nev">Új verseny neve:</label>
+            <input type="text" id="nev" name="nev" placeholder="Új verseny neve" minlength="0" required>
+        </div>
+
+        <div>
+            <label for="tavolsag">Távolság:</label>
+            <input type="number" id="tavolsag" name="tavolsag" placeholder="0" min="0" required>
+        </div>
+
+        <button type="submit">Verseny létrehozása</button>
+    </form>
+</div>
+</body>
+</html>
